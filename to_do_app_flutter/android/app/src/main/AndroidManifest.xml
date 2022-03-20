@@ -2,7 +2,6 @@
     package="com.todo.to_do_app_flutter">
    <application
         android:label="to_do_app_flutter"
-        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
