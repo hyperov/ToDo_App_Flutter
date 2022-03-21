@@ -1,11 +1,10 @@
-import 'dart:ui';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app_flutter/base/AppColor.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
