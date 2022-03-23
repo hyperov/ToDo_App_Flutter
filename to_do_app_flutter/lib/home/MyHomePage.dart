@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'base/AppColor.dart';
+import '../utils/AppColor.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);

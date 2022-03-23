@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app_flutter/IsAuthenticatedWidget.dart';
+import 'package:to_do_app_flutter/login/IsAuthenticatedWidget.dart';
 
-import 'AppColor.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const IsAuthenticatedWidget(),
+      home: const IsSignedInWidget(),
     );
   }
 }
