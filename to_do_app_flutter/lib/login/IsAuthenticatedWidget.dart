@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutterfire_ui/auth.dart';
 
-import '../home/MyHomePage.dart';
+import '../home/HomeScreen.dart';
 
 class IsSignedInWidget extends StatelessWidget {
   const IsSignedInWidget({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class IsSignedInWidget extends StatelessWidget {
         }
 
         // Render your application if authenticated
-        return const MyHomePage(title: 'Flutter Demo Home Page');
+        return const HomeScreen(title: 'Flutter Demo Home Page');
       },
     );
   }

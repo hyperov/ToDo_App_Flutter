@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:to_do_app_flutter/home/viewmodel/HomeViewModel.dart';
 
 import '../utils/AppColor.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -17,11 +19,12 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   int _counter = 0;
+  var controller = Get.put(HomeViewModel());
 
   void _incrementCounter() {
     setState(() {
@@ -52,24 +55,30 @@ class _MyHomePageState extends State<MyHomePage> {
         scaffoldBackgroundColor: const Color(AppColors.greyPlatinum),
       ),
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.colorAccent,
-          backgroundColor: Colors.limeAccent,
-          elevation: 16,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home_filled),
-                label: "Home",
-                backgroundColor: Colors.amber),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                activeIcon: Icon(Icons.person),
-                label: "Profile",
-                backgroundColor: Colors.blue),
-          ],onTap: (int index){},
-        ),
+        bottomNavigationBar: GetX<HomeViewModel>(builder: (context) {
+          return BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: AppColors.colorAccent,
+            backgroundColor: Colors.limeAccent,
+            elevation: 16,
+            currentIndex: controller.bottomNavigationIndex.value,
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined),
+                  activeIcon: Icon(Icons.home_filled),
+                  label: "Home",
+                  backgroundColor: Colors.amber),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline),
+                  activeIcon: Icon(Icons.person),
+                  label: "Profile",
+                  backgroundColor: Colors.blue),
+            ],
+            onTap: (int index) {
+              controller.bottomNavigationIndex.value = index;
+            },
+          );
+        }),
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
