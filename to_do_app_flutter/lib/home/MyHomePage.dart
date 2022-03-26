@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../utils/AppColor.dart';
@@ -43,21 +42,40 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Theme(data: ThemeData(
-      primaryColor: Colors.white,
-      colorScheme: ColorScheme.fromSwatch(
-          primarySwatch:
-           const MaterialColor(AppColors.white, AppColors.whiteMap),
-          accentColor: AppColors.colorAccent),
-      scaffoldBackgroundColor: const Color(AppColors.greyPlatinum),
-
-    ),
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.white,
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch:
+                const MaterialColor(AppColors.white, AppColors.whiteMap),
+            accentColor: AppColors.colorAccent),
+        scaffoldBackgroundColor: const Color(AppColors.greyPlatinum),
+      ),
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: AppColors.colorAccent,
+          backgroundColor: Colors.limeAccent,
+          elevation: 16,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home_filled),
+                label: "Home",
+                backgroundColor: Colors.amber),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline),
+                activeIcon: Icon(Icons.person),
+                label: "Profile",
+                backgroundColor: Colors.blue),
+          ],onTap: (int index){},
+        ),
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: Center(
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
