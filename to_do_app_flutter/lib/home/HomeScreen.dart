@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:to_do_app_flutter/Auth/Auth.dart';
 import 'package:to_do_app_flutter/home/viewmodel/HomeViewModel.dart';
 
 import '../utils/AppColor.dart';
@@ -75,7 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
         }),
         appBar: AppBar(
           elevation: 0,
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.person))],
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Image.network(Auth.instance.currentUser!.photoURL!))
+          ],
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text('Note+'),
@@ -88,7 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(margin: const EdgeInsets.only(left: 16,right: 16),
+            Container(
+              margin: const EdgeInsets.only(left: 16, right: 16),
               child: Text(
                 'Notes',
                 style: Theme.of(context).textTheme.headline4,
