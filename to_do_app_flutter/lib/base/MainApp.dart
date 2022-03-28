@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const IsSignedInWidget(),
+      home: IsSignedInWidget(),
     );
   }
 }
