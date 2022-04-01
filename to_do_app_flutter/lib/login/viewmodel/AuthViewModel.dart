@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:to_do_app_flutter/Auth/Auth.dart';
+import 'package:to_do_app_flutter/base/Auth.dart';
 import 'package:to_do_app_flutter/database/Crud.dart';
 import 'package:to_do_app_flutter/database/Database.dart';
 
@@ -20,7 +20,7 @@ class AuthViewModel extends GetxController {
     //create user first time or override fields
     bool userNotExist = await _isCurrentUserNotExists();
     if (userNotExist) {
-      return Crud.createOrUpdateOrOverrideDocumentByDocReference(
+      return Crud.createOrUpdateOrOverrideSpecificDocumentByDocReference(
           collectionName: Database.collectionUsers,
           docId: user!.uid,
           model: {
@@ -37,7 +37,7 @@ class AuthViewModel extends GetxController {
           }).then((value) => print("insert first time success"),
           onError: (err) => printError(info: "insert first time error $err"));
     } else {
-      return Crud.createOrUpdateOrOverrideDocumentByDocReference(
+      return Crud.createOrUpdateOrOverrideSpecificDocumentByDocReference(
           collectionName: Database.collectionUsers,
           docId: user!.uid,
           model: {

@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Database {
   
-  static const String collectionUsers ='users';
-  static const String user_unique_ID ='id';
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  static const String collectionUsers ='users';
+  static const String collectionNotes ='notes';
+  // static const String user_unique_ID ='id';
 
   static CollectionReference getCollection(String collectionName) =>
       _db.collection(collectionName);

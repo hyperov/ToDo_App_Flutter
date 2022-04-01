@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:get/get.dart';
-import 'package:to_do_app_flutter/Auth/Auth.dart';
-import 'package:to_do_app_flutter/Auth/AuthViewModel.dart';
+import 'package:to_do_app_flutter/base/Auth.dart';
+import 'package:to_do_app_flutter/login/viewmodel/AuthViewModel.dart';
 import 'package:to_do_app_flutter/database/Crud.dart';
 import 'package:to_do_app_flutter/database/Database.dart';
 
-import '../home/HomeScreen.dart';
+import '../../home/view/HomeScreen.dart';
 
 class IsSignedInWidget extends StatelessWidget {
   IsSignedInWidget({Key? key}) : super(key: key);
@@ -37,6 +37,7 @@ class IsSignedInWidget extends StatelessWidget {
 
           // Render your application if authenticated
           _authViewModel.insertUserToDatabase(snapshot.data);
+
          return const HomeScreen(title: 'Flutter Demo Home Page');
         }
     );

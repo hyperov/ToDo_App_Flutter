@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:to_do_app_flutter/Auth/Auth.dart';
+import 'package:to_do_app_flutter/base/Auth.dart';
 import 'package:to_do_app_flutter/home/viewmodel/HomeViewModel.dart';
 
-import '../utils/AppColor.dart';
+import '../../utils/AppColor.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -45,11 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
         primaryColor: Colors.lime,
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch:
-                const MaterialColor(AppColors.white, AppColors.whiteMap),
+                 const MaterialColor(AppColors.white, AppColors.whiteMap),
             accentColor: AppColors.colorAccent),
         scaffoldBackgroundColor: const Color(AppColors.white),
       ),
       child: Scaffold(
+        extendBody: true,
         bottomNavigationBar: GetX<HomeViewModel>(builder: (context) {
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,

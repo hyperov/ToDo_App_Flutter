@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:to_do_app_flutter/login/IsAuthenticatedWidget.dart';
+import 'package:to_do_app_flutter/login/view/IsAuthenticatedWidget.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
