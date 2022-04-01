@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app_flutter/base/Auth.dart';
-import 'package:to_do_app_flutter/notes/NotesRepo.dart';
+import 'package:to_do_app_flutter/notes/model/NotesRepo.dart';
 
-import 'Note.dart';
+import '../model/Note.dart';
 
 class NotesViewModel extends GetxController {
   final NotesRepo _notesRepo = Get.put(NotesRepo());
@@ -24,7 +24,7 @@ class NotesViewModel extends GetxController {
     }, onError: (err) => printError(info: "note insert error : $err"));
   }
 
-   getNotes()  => _notesRepo.getNotes(Auth.instance.currentUser!.uid);
+  Stream<QuerySnapshot>? getNotes()  => _notesRepo.getNotes(Auth.instance.currentUser!.uid);
 // notesRef.then((DocumentReference value) {
 //   insertDocId.value = value.id;
 //   printInfo(info: "note is successfuly inserted");

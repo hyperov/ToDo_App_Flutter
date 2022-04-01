@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:to_do_app_flutter/database/Crud.dart';
 import 'package:to_do_app_flutter/database/Database.dart';
-
-import 'Note.dart';
+import 'package:to_do_app_flutter/notes/model/Note.dart';
 
 class NotesRepo {
   Future<DocumentReference> addNote(String userId, Note note) =>

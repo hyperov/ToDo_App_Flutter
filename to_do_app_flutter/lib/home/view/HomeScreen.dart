@@ -2,41 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app_flutter/base/Auth.dart';
 import 'package:to_do_app_flutter/home/viewmodel/HomeViewModel.dart';
+import 'package:to_do_app_flutter/notes/view/NotesWidget.dart';
+import 'package:to_do_app_flutter/notes/viewmodel/NotesViewModel.dart';
 
 import '../../utils/AppColor.dart';
+import 'ProfileWidget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
+class HomeScreen extends StatelessWidget {
   var controller = Get.put(HomeViewModel());
+  final _notesViewModel = Get.put(NotesViewModel());
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final widgetOptions = [
+    NotesWidget(),
+    ProfileWidget(),
+  ];
+
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         primaryColor: Colors.lime,
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch:
-                 const MaterialColor(AppColors.white, AppColors.whiteMap),
+                const MaterialColor(AppColors.white, AppColors.whiteMap),
             accentColor: AppColors.colorAccent),
         scaffoldBackgroundColor: const Color(AppColors.white),
       ),
@@ -91,18 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           foregroundColor: Colors.lime,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 16, right: 16),
-              child: Text(
-                'Notes',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
-          ],
-        ),
+        body: widgetOptions.elementAt(controller.bottomNavigationIndex.value),
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
           tooltip: 'Increment',
@@ -111,4 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  void _incrementCounter() {}
 }

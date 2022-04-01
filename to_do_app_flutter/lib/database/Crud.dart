@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:to_do_app_flutter/database/Database.dart';
-import 'package:to_do_app_flutter/notes/Note.dart';
+import 'package:to_do_app_flutter/notes/model/Note.dart';
 
 class Crud {
   static Future<void> createOrUpdateOrOverrideSpecificDocumentByDocReference(

@@ -38,7 +38,7 @@ class IsSignedInWidget extends StatelessWidget {
           // Render your application if authenticated
           _authViewModel.insertUserToDatabase(snapshot.data);
 
-         return const HomeScreen(title: 'Flutter Demo Home Page');
+         return  HomeScreen();
         }
     );
   }

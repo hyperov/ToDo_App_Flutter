@@ -34,8 +34,8 @@ class AuthViewModel extends GetxController {
             'phoneNumber': user.phoneNumber,
             'creationTime': user.metadata.creationTime,
             'lastSignInTime': user.metadata.lastSignInTime,
-          }).then((value) => print("insert first time success"),
-          onError: (err) => printError(info: "insert first time error $err"));
+          }).then((value) => print("insert user first time success"),
+          onError: (err) => printError(info: "insert user first time error $err"));
     } else {
       return Crud.createOrUpdateOrOverrideSpecificDocumentByDocReference(
           collectionName: Database.collectionUsers,
