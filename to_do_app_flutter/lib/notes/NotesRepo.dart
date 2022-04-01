@@ -20,7 +20,7 @@ class NotesRepo {
           subDocId: subDocId,
           model: note);
 
-  Future<QuerySnapshot> getNotes(String userId) =>
+  Stream<QuerySnapshot> getNotes(String userId) =>
       Crud.getAllDocumentsOfSubCollection(
           collectionName: Database.collectionUsers,
           docId: userId,

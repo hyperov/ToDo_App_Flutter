@@ -48,11 +48,11 @@ class Crud {
         .update(model);
   }
 
-  static Future<QuerySnapshot> getAllDocumentsOfSubCollection( {required String collectionName,
+  static Stream<QuerySnapshot> getAllDocumentsOfSubCollection( {required String collectionName,
     required String docId,
     required String subCollectionName}){
     return Database.getSubCollection(
         Database.getDoc(collectionName: collectionName, docId: docId),
-        subCollectionName).get();
+        subCollectionName).snapshots();
   }
 }
