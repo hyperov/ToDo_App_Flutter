@@ -20,7 +20,7 @@ class NotesWidget extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingIndicator(size: 50, borderWidth: 15);
+            return const Center(child: LoadingIndicator(size: 50, borderWidth: 5));
             // Text("Loading");
           }
 

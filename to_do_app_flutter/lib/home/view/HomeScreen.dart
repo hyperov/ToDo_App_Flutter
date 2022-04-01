@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app_flutter/base/Auth.dart';
 import 'package:to_do_app_flutter/home/viewmodel/HomeViewModel.dart';
-import 'package:to_do_app_flutter/notes/view/NotesWidget.dart';
+import 'package:to_do_app_flutter/notes/view/NotesScreen.dart';
 import 'package:to_do_app_flutter/notes/viewmodel/NotesViewModel.dart';
 
 import '../../utils/AppColor.dart';
@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
   final _notesViewModel = Get.put(NotesViewModel());
 
   final widgetOptions = [
-    NotesWidget(),
-    ProfileWidget(),
+    const NotesScreen(),
+    const ProfileWidget(),
   ];
 
   HomeScreen({Key? key}) : super(key: key);
@@ -72,7 +72,8 @@ class HomeScreen extends StatelessWidget {
           foregroundColor: Colors.lime,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        body: widgetOptions.elementAt(controller.bottomNavigationIndex.value),
+        body: Obx(() =>
+            widgetOptions.elementAt(controller.bottomNavigationIndex.value)),
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
           tooltip: 'Increment',
