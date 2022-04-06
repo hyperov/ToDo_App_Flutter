@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app_flutter/base/Auth.dart';
 import 'package:to_do_app_flutter/home/viewmodel/HomeViewModel.dart';
+import 'package:to_do_app_flutter/notes/view/NotesDetailsScreen.dart';
 import 'package:to_do_app_flutter/notes/view/NotesScreen.dart';
 import 'package:to_do_app_flutter/notes/viewmodel/NotesViewModel.dart';
 
@@ -63,8 +64,6 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {},
                 icon: Image.network(Auth.instance.currentUser!.photoURL!))
           ],
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: const Text('Note+'),
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 24),
           toolbarHeight: 140,
@@ -75,13 +74,15 @@ class HomeScreen extends StatelessWidget {
         body: Obx(() =>
             widgetOptions.elementAt(controller.bottomNavigationIndex.value)),
         floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
+          onPressed: _gotoNotesDetailsScreen,
           tooltip: 'Increment',
           child: const Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
+        ),
       ),
     );
   }
 
-  void _incrementCounter() {}
+  void _gotoNotesDetailsScreen() {
+    Get.to(() => NotesDetailsWidget());
+  }
 }
