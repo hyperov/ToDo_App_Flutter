@@ -11,6 +11,8 @@ class NotesDetailsViewModel extends GetxController {
 
   RxString insertDocId = "".obs;
   RxInt bottomNavigationIndex = 0.obs;
+  RxInt titleTextCounter = 0.obs;
+  RxInt detailsTextCounter = 0.obs;
 
   @override
   void onInit() {
