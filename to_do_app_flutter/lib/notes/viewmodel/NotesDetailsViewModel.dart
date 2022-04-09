@@ -6,13 +6,17 @@ import 'package:to_do_app_flutter/notes/model/NotesRepo.dart';
 import '../model/Note.dart';
 
 class NotesDetailsViewModel extends GetxController {
-
   final NotesRepo _notesRepo = Get.put(NotesRepo());
 
   RxString insertDocId = "".obs;
   RxInt bottomNavigationIndex = 0.obs;
   RxInt titleTextCounter = 0.obs;
   RxInt detailsTextCounter = 0.obs;
+
+  RxBool textChanges = false.obs;
+
+  RxString title = "".obs;
+  RxString desc = "".obs;
 
   @override
   void onInit() {
@@ -29,4 +33,9 @@ class NotesDetailsViewModel extends GetxController {
     }, onError: (err) => printError(info: "note insert error : $err"));
   }
 
+  editNote(Note note,noteId) {
+    Future<void> notesRef =
+    _notesRepo.updateNote(Auth.instance.currentUser!.uid,noteId, note);
+    notesRef.then((value) => {}, onError: (err) => printError(info: "note edit error : $err"));
+  }
 }

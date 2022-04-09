@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:to_do_app_flutter/notes/model/Note.dart';
 import 'package:to_do_app_flutter/notes/viewmodel/NotesDetailsViewModel.dart';
 import 'package:to_do_app_flutter/utils/AppColor.dart';
 
@@ -58,6 +59,8 @@ class NotesDetailsWidget extends StatelessWidget {
                     expands: true,
                     maxLines: null,
                     minLines: null,
+                    onChanged: (String text) =>
+                        detailsController.textChanges.value = true,
                     buildCounter: (context,
                         {required currentLength,
                         required isFocused,
@@ -130,9 +133,32 @@ class NotesDetailsWidget extends StatelessWidget {
             _getBackgroundColor(index);
           },
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-        floatingActionButton: FloatingActionButton(focusElevation: 16,child: Icon(Icons.add),mini: true,
-          onPressed: () {},
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Container(
+          margin: const EdgeInsets.only(bottom: 24),
+          child: FloatingActionButton(
+            focusElevation: 16,
+            highlightElevation: 32,
+            child: Icon(Icons.add),
+            tooltip: "save",
+            splashColor: _getBackgroundColor(
+                detailsController.bottomNavigationIndex.value),
+            onPressed: () {
+              if (detailsController.textChanges.isFalse) {
+                detailsController.addNote(
+                  Note(
+                      title: detailsController.title.value,
+                      desc: detailsController.desc.value,
+                      createdAt: DateTime.now(),
+                      lastEdit: DateTime.now(),
+                      backgroundColorIndex:
+                          detailsController.bottomNavigationIndex.value),
+                );
+              }else{
+
+              }
+            },
+          ),
         ),
       ),
     );
