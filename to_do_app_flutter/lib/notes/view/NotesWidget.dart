@@ -4,6 +4,7 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app_flutter/notes/model/Note.dart';
 import 'package:to_do_app_flutter/notes/viewmodel/NotesViewModel.dart';
+import 'package:to_do_app_flutter/utils/AppColor.dart';
 
 class NotesWidget extends StatelessWidget {
   NotesWidget({Key? key}) : super(key: key);
@@ -33,12 +34,18 @@ class NotesWidget extends StatelessWidget {
           }
 
           return ListView(
+            shrinkWrap: true,
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Note note = document.data()! as Note;
-              return ListTile(
-                title: Text(note.title),
-                subtitle: Text(note.desc),
-                textColor: Colors.black12,
+              Map<String,dynamic> note = document.data() as Map<String,dynamic>;
+              return Card(
+                color: AppColors.getBackgroundColor(note["backgroundColorIndex"]),
+                margin: EdgeInsets.all(16),
+                elevation: 16,shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+                child: ListTile(
+                  title: Text(note["title"]),
+                  subtitle: Text(note["desc"]),
+                  textColor: Colors.black,
+                ),
               );
             }).toList(),
           );

@@ -33,30 +33,32 @@ class HomeScreen extends StatelessWidget {
       ),
       child: Scaffold(
         extendBody: true,
-        bottomNavigationBar: GetX<HomeViewModel>(builder: (context) {
-          return BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: AppColors.colorAccent,
-            backgroundColor: Colors.limeAccent,
-            elevation: 16,
-            currentIndex: controller.bottomNavigationIndex.value,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  activeIcon: Icon(Icons.home_filled),
-                  label: "Home",
-                  backgroundColor: Colors.amber),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline),
-                  activeIcon: Icon(Icons.person),
-                  label: "Profile",
-                  backgroundColor: Colors.blue),
-            ],
-            onTap: (int index) {
-              controller.bottomNavigationIndex.value = index;
-            },
-          );
-        }),
+        bottomNavigationBar: SafeArea(
+          child: GetX<HomeViewModel>(builder: (context) {
+            return BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: AppColors.colorAccent,
+              backgroundColor: Colors.limeAccent,
+              elevation: 16,
+              currentIndex: controller.bottomNavigationIndex.value,
+              items: const [
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home_outlined),
+                    activeIcon: Icon(Icons.home_filled),
+                    label: "Home",
+                    backgroundColor: Colors.amber),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person_outline),
+                    activeIcon: Icon(Icons.person),
+                    label: "Profile",
+                    backgroundColor: Colors.blue),
+              ],
+              onTap: (int index) {
+                controller.bottomNavigationIndex.value = index;
+              },
+            );
+          }),
+        ),
         appBar: AppBar(
           elevation: 0,
           actions: [

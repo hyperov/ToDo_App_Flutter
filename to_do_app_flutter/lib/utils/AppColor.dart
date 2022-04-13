@@ -30,4 +30,32 @@ class AppColors {
     800: Color.fromRGBO(255, 255, 255, .9),
     900: Color.fromRGBO(255, 255, 255, 1),
   };
+
+  static Color getBackgroundColor(int index) {
+    Color color = Colors.white;
+    switch (index) {
+      case 0:
+        color = Colors.white;
+        break;
+      case 1:
+        color = Colors.grey;
+        break;
+      case 2:
+        color = Colors.blue;
+        break;
+      case 3:
+        color = Colors.lime;
+        break;
+      case 4:
+        color = Colors.amber;
+        break;
+      case 5:
+        color = Colors.deepOrangeAccent;
+        break;
+      case 6:
+        color = Colors.deepPurple;
+        break;
+    }
+    return color;
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app_flutter/base/Auth.dart';
 import 'package:to_do_app_flutter/notes/model/NotesRepo.dart';
@@ -13,10 +14,8 @@ class NotesDetailsViewModel extends GetxController {
   RxInt titleTextCounter = 0.obs;
   RxInt detailsTextCounter = 0.obs;
 
-  RxBool textChanges = false.obs;
-
-  RxString title = "".obs;
-  RxString desc = "".obs;
+  final titleController = TextEditingController();
+  final descController = TextEditingController();
 
   @override
   void onInit() {
@@ -33,9 +32,17 @@ class NotesDetailsViewModel extends GetxController {
     }, onError: (err) => printError(info: "note insert error : $err"));
   }
 
-  editNote(Note note,noteId) {
+  editNote(Map<String, Object> note, noteId) {
     Future<void> notesRef =
-    _notesRepo.updateNote(Auth.instance.currentUser!.uid,noteId, note);
-    notesRef.then((value) => {}, onError: (err) => printError(info: "note edit error : $err"));
+        _notesRepo.updateNote(Auth.instance.currentUser!.uid, noteId, note);
+    notesRef.then((value) => {},
+        onError: (err) => printError(info: "note edit error : $err"));
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descController.dispose();
+    super.dispose();
   }
 }

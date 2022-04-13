@@ -15,7 +15,7 @@ class NotesDetailsWidget extends StatelessWidget {
     return Obx(
       () => Scaffold(
         backgroundColor:
-            _getBackgroundColor(detailsController.bottomNavigationIndex.value),
+        AppColors.getBackgroundColor(detailsController.bottomNavigationIndex.value),
         appBar: AppBar(
             leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
@@ -27,6 +27,7 @@ class NotesDetailsWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(8),
               child: TextField(
+                controller: detailsController.titleController,
                 enableInteractiveSelection: true,
                 buildCounter: (context,
                     {required currentLength, required isFocused, maxLength}) {
@@ -53,14 +54,13 @@ class NotesDetailsWidget extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.all(8),
                 child: TextField(
+                    controller: detailsController.descController,
                     textInputAction: TextInputAction.done,
                     textAlignVertical: TextAlignVertical.top,
                     enableInteractiveSelection: true,
                     expands: true,
                     maxLines: null,
                     minLines: null,
-                    onChanged: (String text) =>
-                        detailsController.textChanges.value = true,
                     buildCounter: (context,
                         {required currentLength,
                         required isFocused,
@@ -130,7 +130,7 @@ class NotesDetailsWidget extends StatelessWidget {
           ],
           onTap: (int index) {
             detailsController.bottomNavigationIndex.value = index;
-            _getBackgroundColor(index);
+            AppColors.getBackgroundColor(index);
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -141,21 +141,27 @@ class NotesDetailsWidget extends StatelessWidget {
             highlightElevation: 32,
             child: Icon(Icons.add),
             tooltip: "save",
-            splashColor: _getBackgroundColor(
+            splashColor: AppColors.getBackgroundColor(
                 detailsController.bottomNavigationIndex.value),
             onPressed: () {
-              if (detailsController.textChanges.isFalse) {
+              if (detailsController.insertDocId.isEmpty) {
                 detailsController.addNote(
                   Note(
-                      title: detailsController.title.value,
-                      desc: detailsController.desc.value,
+                      title: detailsController.titleController.text,
+                      desc: detailsController.descController.text,
                       createdAt: DateTime.now(),
                       lastEdit: DateTime.now(),
                       backgroundColorIndex:
                           detailsController.bottomNavigationIndex.value),
                 );
-              }else{
-
+              } else {
+                detailsController.editNote({
+                  "title": detailsController.titleController.text,
+                  "desc": detailsController.descController.text,
+                  "lastEdit": DateTime.now(),
+                  "backgroundColorIndex":
+                      detailsController.bottomNavigationIndex
+                }, detailsController.insertDocId);
               }
             },
           ),
@@ -164,31 +170,5 @@ class NotesDetailsWidget extends StatelessWidget {
     );
   }
 
-  Color _getBackgroundColor(int index) {
-    Color color = Colors.white;
-    switch (index) {
-      case 0:
-        color = Colors.white;
-        break;
-      case 1:
-        color = Colors.grey;
-        break;
-      case 2:
-        color = Colors.blue;
-        break;
-      case 3:
-        color = Colors.lime;
-        break;
-      case 4:
-        color = Colors.amber;
-        break;
-      case 5:
-        color = Colors.deepOrangeAccent;
-        break;
-      case 6:
-        color = Colors.deepPurple;
-        break;
-    }
-    return color;
-  }
+
 }

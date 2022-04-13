@@ -4,14 +4,23 @@ import 'package:to_do_app_flutter/database/Database.dart';
 import 'package:to_do_app_flutter/notes/model/Note.dart';
 
 class NotesRepo {
-  Future<DocumentReference> addNote(String userId, Note note) =>
-      Crud.addDocumentToSubCollection(
-          collectionName: Database.collectionUsers,
-          docId: userId,
-          subCollectionName: Database.collectionNotes,
-          model: note);
+  Future<DocumentReference> addNote(String userId, Note note) {
+    Map<String, dynamic> noteMap = {
+      "title": note.title,
+      "desc": note.desc,
+      "pinned": note.pinned,
+      "backgroundColorIndex": note.backgroundColorIndex,
+      "createdAt": note.createdAt,
+      "lastEdit": note.lastEdit
+    };
+    return Crud.addDocumentToSubCollection(
+        collectionName: Database.collectionUsers,
+        docId: userId,
+        subCollectionName: Database.collectionNotes,
+        model: noteMap);
+  }
 
-  Future<void> updateNote(String userId, String subDocId, Note note) =>
+  Future<void> updateNote(String userId, String subDocId, dynamic note) =>
       Crud.updateDocumentToSubCollection(
           collectionName: Database.collectionUsers,
           docId: userId,

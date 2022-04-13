@@ -12,7 +12,7 @@ class Crud {
   }
 
   static Future<DocumentReference> addDocumentToCollection(
-      {required String collectionName, required Map<String, dynamic> model}) {
+      {required String collectionName, required dynamic model}) {
     return Database.getCollection(collectionName).add(model);
   }
 
