@@ -21,6 +21,7 @@ class NotesDetailsViewModel extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+
   }
 
   addNote(Note note) {

@@ -8,7 +8,7 @@ class Crud {
       required String docId,
       required Map<String, dynamic> model}) {
     return Database.getDoc(collectionName: collectionName, docId: docId)
-        .set(model);
+        .set(model,SetOptions(merge: true));
   }
 
   static Future<DocumentReference> addDocumentToCollection(

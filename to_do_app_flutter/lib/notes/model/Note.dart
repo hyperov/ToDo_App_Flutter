@@ -1,15 +1,16 @@
 class Note {
-  String title;
-  String desc;
+  String? title;
+  String? desc;
 
-  bool pinned;
+  bool? pinned;
 
-  int backgroundColorIndex;
+  int? backgroundColorIndex;
 
-  late DateTime createdAt;
-  late DateTime lastEdit;
+  late DateTime? createdAt;
+  late DateTime? lastEdit;
 
-  Note({
+  Note();
+  Note.sec({
     required this.title,
     required this.desc,
     required this.createdAt,
